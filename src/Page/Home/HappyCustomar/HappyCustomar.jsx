@@ -2,7 +2,7 @@ import Container from "../../../Components/Container";
 
 const HappyCustomar = () => {
   return (
-    <div className="bg-pink-50 py-32  ">
+    <div className="bg-pink-50 py-32">
       <Container>
         <div className="flex w-full flex-col md:flex-row gap-7 ">
           <div className="md:w-1/2">
