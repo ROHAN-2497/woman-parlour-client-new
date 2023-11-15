@@ -16,9 +16,6 @@ const NavBar = () => {
       <li>
         <Link to="/">Contact Us</Link>
       </li>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
     </>
   );
   return (
@@ -59,9 +56,9 @@ const NavBar = () => {
             <ul className="menu menu-horizontal px-1">{navOption}</ul>
           </div>
           <div className="navbar-end">
-            <a className="btn bg-pink-600  text-white">
+            <Link className="btn bg-pink-600  text-white" to="/login">
               Login
-            </a>
+            </Link>
           </div>
         </div>
       </Container>
