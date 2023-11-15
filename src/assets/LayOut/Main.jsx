@@ -8,7 +8,7 @@ const Main = () => {
 const noHeaderFooter = location.pathname.includes('login')
     return (
         <div>
-          { noHeaderFooter || <NavBar></NavBar>}
+          <NavBar></NavBar>
             <Outlet></Outlet>
             {noHeaderFooter || <Footer></Footer>}
         </div>
