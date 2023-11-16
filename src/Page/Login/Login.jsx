@@ -2,10 +2,19 @@ import { Link } from "react-router-dom";
 import Container from "../../Components/Container";
 
 const Login = () => {
+  const handleLogin = event =>{
+     event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password)
+
+  }
+
   return (
     <Container>
-      <div className=" w-full md:flex flex-col justify-center items-center py-20">
-        <form className="w-[30%] border-2 border-pink-100 px-4 py-4">
+      <div className=" md:w-full md:flex flex-col justify-center items-center py-20">
+        <form onSubmit={handleLogin} className="md:w-[30%] border-2 border-pink-100 px-4 py-4">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
