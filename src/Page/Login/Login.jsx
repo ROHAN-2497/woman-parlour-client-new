@@ -6,14 +6,19 @@ import {
   LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
-import { useEffect } from "react";
+import { useEffect, useReducer, useRef } from "react";
 
 const Login = () => {
+ 
+  const captchaRef = useRef(null)
 
- useEffect(() =>{
-  loadCaptchaEnginge(6); 
- },[])
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
 
+  const handleValidated = () =>{
+
+  }
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -42,7 +47,7 @@ const Login = () => {
               required
             />
           </div>
-          
+
           <div className="form-control">
             <label className="label">
               <span className="label-text">Password</span>
@@ -57,7 +62,7 @@ const Login = () => {
           </div>
           <div className="form-control">
             <label className="label">
-            <LoadCanvasTemplate />
+              <LoadCanvasTemplate />
             </label>
             <input
               type="password"
@@ -67,19 +72,20 @@ const Login = () => {
               required
             />
           </div>
-          <div className="">
-            <Link>
-              Don’t have an account?{" "}
-              <span className="text-1xl font-semibold">Create an account</span>
-            </Link>
-          </div>
+          <button onClick={handleValidated} className="btn btn-outline m-6 btn-xs">Validate</button>
 
-          <div className="form-control mt-6">
+          <div className="form-control mb-6">
             <input
               type="submit"
               value="Login"
               className="btn bg-pink-600 text-white"
             />
+          </div>
+          <div className="">
+            <Link>
+              Don’t have an account?{" "}
+              <span className="text-1xl font-semibold">Create an account</span>
+            </Link>
           </div>
         </form>
       </div>
