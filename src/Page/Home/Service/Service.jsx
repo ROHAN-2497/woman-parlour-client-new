@@ -9,7 +9,7 @@ const Service = () => {
         Our Awesome <span className="text-pink-600">Service</span>
       </h3>
     <Container>
-    <div className="mt-20 pl-2 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="mt-20  md:pl-4 grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="card w-96 bg-gray-100 hover:shadow-xl p-10">
           <img src={card1} alt="Shoes" className="w-[72px] h-[72px] mx-auto" />
           <div className="card-body items-center text-center">
