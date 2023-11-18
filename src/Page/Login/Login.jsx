@@ -3,20 +3,17 @@ import Container from "../../Components/Container";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
-  LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Login = () => {
   const captchaRef = useRef(null);
-  const [disable, setDisable] = useState(true)
+  const [disable, setDisable] = useState(true);
 
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
-
-  
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -26,21 +23,16 @@ const Login = () => {
     console.log(email, password);
   };
 
-
   const handleValidated = () => {
     const user_captcha_value = captchaRef.current.value;
     console.log(user_captcha_value);
 
-    if (validateCaptcha(user_captcha_value)==true) {
-      setDisable(false)
-
-  }
-
-  else {
-      alert('Captcha Does Not Match');
-  }
-};
-
+    if (validateCaptcha(user_captcha_value) == true) {
+      setDisable(false);
+    } else {
+      alert("Captcha Does Not Match");
+    }
+  };
 
   return (
     <Container>
@@ -88,7 +80,6 @@ const Login = () => {
             />
           </div>
           <button
-          
             onClick={handleValidated}
             className="btn btn-outline m-6 btn-xs"
           >
@@ -97,7 +88,7 @@ const Login = () => {
 
           <div className="form-control mb-6">
             <input
-            disabled={disable}
+              disabled={disable}
               type="submit"
               value="Login"
               className="btn bg-pink-600 text-white"
