@@ -12,7 +12,7 @@ const firebaseConfig = {
   storageBucket: import.meta.envVITE_storageBucket,
   messagingSenderId: import.meta.envVITE_messagingSenderId,
   appId: import.meta.envVITE_appId,
-  measurementId: import.meta.envVITE_measurementId
+  measurementId: import.meta.envVITE_measurementId,
 };
 
 // Initialize Firebase
