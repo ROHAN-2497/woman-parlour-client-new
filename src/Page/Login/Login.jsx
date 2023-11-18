@@ -10,14 +10,16 @@ import { useEffect, useReducer, useRef } from "react";
 
 const Login = () => {
  
-  const captchaRef = useRef(null)
+  const captchaRef = useRef(null);
 
   useEffect(() => {
     loadCaptchaEnginge(6);
+    
   }, []);
 
   const handleValidated = () =>{
-
+const value = captchaRef.current.value;
+console.log(value);
   }
 
   const handleLogin = (event) => {
@@ -65,9 +67,9 @@ const Login = () => {
               <LoadCanvasTemplate />
             </label>
             <input
-              type="password"
+              type="text"
               placeholder="Type the captcha"
-              name="recaptcha"
+              name="captcha"
               className="input input-bordered"
               required
             />
