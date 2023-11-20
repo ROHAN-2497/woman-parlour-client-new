@@ -5,11 +5,14 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { AuthContext } from "../../Providers/AuthProviders";
+import { Result } from "postcss";
 
 const Login = () => {
   const captchaRef = useRef(null);
   const [disable, setDisable] = useState(true);
+  const { signIn } = useContext(AuthContext);
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -21,6 +24,10 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+    signIn(email, password).then((result) => {
+      const user = result.user;
+      console.log(user);
+    });
   };
 
   const handleValidated = () => {
@@ -95,7 +102,7 @@ const Login = () => {
             />
           </div>
           <div className="">
-            <Link>
+            <Link to='/signup'>
               Don't have an account?{" "}
               <span className="text-1xl font-semibold">Create an account</span>
             </Link>
