@@ -25,7 +25,7 @@ const Login = () => {
 
   const handleValidated = () => {
     const user_captcha_value = captchaRef.current.value;
-    console.log(user_captcha_value);
+    console.log("user_captcha_value", user_captcha_value);
 
     if (validateCaptcha(user_captcha_value) == true) {
       setDisable(false);
@@ -96,7 +96,7 @@ const Login = () => {
           </div>
           <div className="">
             <Link>
-              Don’t have an account?{" "}
+              Don't have an account?{" "}
               <span className="text-1xl font-semibold">Create an account</span>
             </Link>
           </div>
