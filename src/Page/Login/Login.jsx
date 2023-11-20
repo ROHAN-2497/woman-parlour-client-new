@@ -102,10 +102,10 @@ const Login = () => {
             />
           </div>
           <div className="">
-            <Link to='/signup'>
-              Don't have an account?{" "}
-              <span className="text-1xl font-semibold">Create an account</span>
-            </Link>
+            Don't have an account?{" "}
+            <span className="text-1xl font-semibold">
+              <Link to="/signup">Create an account</Link>
+            </span>
           </div>
         </form>
       </div>
