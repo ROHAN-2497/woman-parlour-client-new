@@ -9,13 +9,13 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onsubmit = (data) => {
     console.log(data);
   };
 
   return (
     <Container>
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero min-h-screen bg-pink-200">
         <div className="hero-content flex-col lg:flex-row-reverse ">
           <div className="text-center lg:text-left w-1/2">
             <h1 className="text-5xl font-bold">SignUp now!</h1>
@@ -25,7 +25,7 @@ const SignUp = () => {
               et a id nisi.
             </p>
           </div>
-          <div className="card shrink-0 w-full max-w-sm w-1/2 shadow-2xl bg-base-100">
+          <div className="card shrink-0 max-w-sm w-1/2 shadow-2xl bg-base-100">
             <form onSubmit={handleSubmit(onsubmit)} className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -37,9 +37,10 @@ const SignUp = () => {
                   placeholder="Name"
                   name="name"
                   className="input input-bordered"
-                  required
                 />
-                {errors.name && <span>Name field is required</span>}
+                {errors.name && (
+                  <span className="text-red-500">Name field is required</span>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -51,23 +52,38 @@ const SignUp = () => {
                   placeholder="email"
                   name="email"
                   className="input input-bordered"
-                  required
                 />
-                {errors.email && <span>Email field is required</span>}
+                {errors.email && (
+                  <span className="text-red-500">Email field is required</span>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  {...register("password", { required: true })}
+                  {...register("password", { required: true,
+                     pattern: /^[A-Za-z]+$/i,
+                     min: 6,
+                      max: 20
+                    })}
                   type="password"
                   placeholder="password"
                   name="password"
                   className="input input-bordered"
-                  required
                 />
-                {errors.password && <span>password field is required</span>}
+                {errors.password?.type === "pattern" && (
+                  <p role="alert"><span className="text-red-500">password  must have one upperCase, one lower case, one specialCharecter </span></p>
+                )}
+                {errors.password?.type === "min" && (
+                  <p role="alert"><span className="text-red-500">password  must required</span></p>
+                )}
+                {errors.password?.type === "max" && (
+                  <p role="alert"><span className="text-red-500">password  is required</span></p>
+                )}
+                {errors.password?.type === "required" && (
+                  <p role="alert"><span className="text-red-500">password  is required</span></p>
+                )}
               </div>
               <div className="form-control mt-6">
                 <button className="btn bg-pink-600 text-white">
@@ -78,7 +94,7 @@ const SignUp = () => {
                 <small>
                   Already hava an account ?{" "}
                   <Link className="text-1xl font-semibold" to="/login">
-                    Login
+                    <span className="text-pink-600">Login</span>
                   </Link>
                 </small>
               </p>
