@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Container from "../../Components/Container";
-import Swal from 'sweetalert2'
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
@@ -8,7 +7,7 @@ import {
 } from "react-simple-captcha";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
-import { Result } from "postcss";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const captchaRef = useRef(null);
@@ -28,26 +27,25 @@ const Login = () => {
     signIn(email, password).then((result) => {
       const user = result.user;
       console.log(user);
-      Swal.fire({
+      Swal  .fire({
         title: "Custom animation with Animate.css",
         showClass: {
           popup: `
             animate__animated
             animate__fadeInUp
             animate__faster
-          `
+          `,
         },
         hideClass: {
           popup: `
             animate__animated
             animate__fadeOutDown
             animate__faster
-          `
-        }
-      
-
+          `,
+        },
+      });
     });
-  }
+  };
 
   const handleValidated = () => {
     const user_captcha_value = captchaRef.current.value;
@@ -98,6 +96,7 @@ const Login = () => {
             </label>
             <input
               type="text"
+              onChange={handleValidated}
               ref={captchaRef}
               placeholder="Type the captcha"
               name="captcha"
@@ -105,12 +104,7 @@ const Login = () => {
               required
             />
           </div>
-          <button
-            onClick={handleValidated}
-            className="btn btn-outline m-6 btn-xs"
-          >
-            Validate
-          </button>
+          <button className="btn btn-outline m-6 btn-xs">Validate</button>
 
           <div className="form-control mb-6">
             <input
