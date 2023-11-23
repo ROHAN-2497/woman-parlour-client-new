@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import Container from "./Container";
+import { useContext } from "react";
+import { AuthContext } from "../Providers/AuthProviders";
 
 const NavBar = () => {
+  const {user, logOut} = useContext(AuthContext);
   const navOption = (
     <>
       <li>
