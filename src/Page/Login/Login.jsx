@@ -5,12 +5,11 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const captchaRef = useRef(null);
   const [disable, setDisable] = useState(true);
   const { signIn } = useContext(AuthContext);
 
@@ -27,8 +26,8 @@ const Login = () => {
     signIn(email, password).then((result) => {
       const user = result.user;
       console.log(user);
-      Swal  .fire({
-        title: "Custom animation with Animate.css",
+      Swal.fire({
+        title: "User Login Successfully..",
         showClass: {
           popup: `
             animate__animated
@@ -47,16 +46,15 @@ const Login = () => {
     });
   };
 
-  const handleValidated = () => {
-    const user_captcha_value = captchaRef.current.value;
-    console.log("user_captcha_value", user_captcha_value);
+  const handleValidated = (e) => {
+    const user_captcha_value = e.target.value;
 
-    if (validateCaptcha(user_captcha_value) == true) {
+    if (validateCaptcha(user_captcha_value)) {
       setDisable(false);
     } else {
-      alert("Captcha Does Not Match");
+      setDisable(true)
     }
-  };
+  } 
 
   return (
     <Container>
@@ -95,20 +93,17 @@ const Login = () => {
               <LoadCanvasTemplate />
             </label>
             <input
+              onBlur={handleValidated}
               type="text"
-              onChange={handleValidated}
-              ref={captchaRef}
               placeholder="Type the captcha"
               name="captcha"
               className="input input-bordered"
               required
             />
           </div>
-          <button className="btn btn-outline m-6 btn-xs">Validate</button>
 
           <div className="form-control mb-6">
             <input
-              disabled={disable}
               type="submit"
               value="Login"
               className="btn bg-pink-600 text-white"
