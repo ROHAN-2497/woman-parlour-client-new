@@ -4,7 +4,16 @@ import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProviders";
 
 const NavBar = () => {
-  const {user, logOut} = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  
+  const handleLogout = () =>{
+    logOut()
+    .then(result =>{})
+    .catch(error =>{
+      console.log(error)
+    })
+  }
+
   const navOption = (
     <>
       <li>
@@ -19,6 +28,7 @@ const NavBar = () => {
       <li>
         <Link to="/">Contact Us</Link>
       </li>
+      {user ? <></> : <></>}
     </>
   );
   return (
@@ -59,9 +69,19 @@ const NavBar = () => {
             <ul className="menu menu-horizontal px-1">{navOption}</ul>
           </div>
           <div className="navbar-end">
-            <Link className="btn bg-pink-600  text-white" to="/login">
-              Login
+            {user ? (
+              <>
+               <Link onClick={handleLogout} className="btn bg-pink-600  text-white" to="/logout">
+              logOut
             </Link>
+              </>
+            ) : (
+              <>
+                <Link className="btn bg-pink-600  text-white" to="/login">
+                  Login
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </Container>
