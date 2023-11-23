@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import Container from "../../Components/Container";
 import { useForm } from "react-hook-form";
+import { createContext } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 const SignUp = () => {
+  const { createUser } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -11,6 +15,10 @@ const SignUp = () => {
 
   const onsubmit = (data) => {
     console.log(data);
+    createUser(data.email, data.password).then((result) => {
+      const loggeduser = result.user;
+      console.log(loggeduser);
+    });
   };
 
   return (
@@ -62,33 +70,47 @@ const SignUp = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  {...register("password", { required: true,
-                     pattern: /^[A-Za-z]+$/i,
-                     min: 6,
-                      max: 20
-                    })}
+                  {...register("password", {
+                    required: true,
+                    pattern: /^[A-Za-z]+/,
+                    min: 6,
+                    max: 20,
+                  })}
                   type="password"
                   placeholder="password"
                   name="password"
                   className="input input-bordered"
                 />
                 {errors.password?.type === "pattern" && (
-                  <p role="alert"><span className="text-red-500">password  must have one upperCase, one lower case, one specialCharecter </span></p>
+                  <p role="alert">
+                    <span className="text-red-500">
+                      password must have one upperCase, one lower case, one
+                      specialCharecter{" "}
+                    </span>
+                  </p>
                 )}
                 {errors.password?.type === "min" && (
-                  <p role="alert"><span className="text-red-500">password  must required</span></p>
+                  <p role="alert">
+                    <span className="text-red-500">password must required</span>
+                  </p>
                 )}
                 {errors.password?.type === "max" && (
-                  <p role="alert"><span className="text-red-500">password  is required</span></p>
+                  <p role="alert">
+                    <span className="text-red-500">password is required</span>
+                  </p>
                 )}
                 {errors.password?.type === "required" && (
-                  <p role="alert"><span className="text-red-500">password  is required</span></p>
+                  <p role="alert">
+                    <span className="text-red-500">password is required</span>
+                  </p>
                 )}
               </div>
               <div className="form-control mt-6">
-                <button className="btn bg-pink-600 text-white">
-                  Create an Account
-                </button>
+                <input
+                  className="btn bg-pink-600 text-white"
+                  type="submit"
+                  value="Create an account"
+                />
               </div>
               <p>
                 <small>
