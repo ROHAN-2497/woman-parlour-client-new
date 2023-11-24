@@ -1,11 +1,10 @@
-const Contact = () => {
+const  Contact = () => {
   return (
-    <div>
+    <div >
       <div className="bg-pink-50 mt-20">
-        
         <div id="contact" className="max-w-[1040px] m-auto md:pl-20 p-4 py-16">
           <h1 className="py-4 text-4xl font-bold text-center text-black">
-          Let us handle your <br /> project, professionally.
+            Let us handle your <br /> project, professionally.
           </h1>
           <form action="" method="POST" encType="multipart/form-data">
             <div className="grid md:grid-cols-2 gap-4 w-full py-2">

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { BrowserRouter, Link } from "react-router-dom";
 import Container from "./Container";
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProviders";
@@ -25,8 +25,8 @@ const NavBar = () => {
       <li>
         <Link to="/">Our Team</Link>
       </li>
-      <li>
-        <Link to="/">Contact Us</Link>
+     <li>
+        <Link to="contact">Contact Us</Link>
       </li>
       {user ? <></> : <></>}
     </>
