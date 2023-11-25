@@ -73,6 +73,7 @@ const NavBar = () => {
           <div className="navbar-end">
             {user ? (
               <>
+              <div className="pr-8">{user?.displayName}</div>
                 <Link
                   onClick={handleLogout}
                   className="btn bg-pink-600  text-white"

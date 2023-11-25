@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Container from "../../Components/Container";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 
 const SignUp = () => {
   const { createUser, updateProfileUser } = useContext(AuthContext);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -30,6 +31,7 @@ const SignUp = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          navigate('/')
         })
         .catch((error) => {
           console.log(error);
@@ -72,7 +74,6 @@ const SignUp = () => {
                 </label>
                 <input
                   {...register("photoURL", { required: true })}
-                  type="photoURL"
                   placeholder="Photo URL"
                   className="input input-bordered"
                 />
