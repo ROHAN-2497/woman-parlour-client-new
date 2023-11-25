@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
 import Container from "../../Components/Container";
 import { useForm } from "react-hook-form";
-import { createContext } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateProfileUser } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -18,6 +19,21 @@ const SignUp = () => {
     createUser(data.email, data.password).then((result) => {
       const loggeduser = result.user;
       console.log(loggeduser);
+      updateProfileUser(data.name, data.photoURL)
+        .then(() => {
+          console.log("Update User Profile");
+          reset();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User created successfull..",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     });
   };
 
@@ -48,6 +64,22 @@ const SignUp = () => {
                 />
                 {errors.name && (
                   <span className="text-red-500">Name field is required</span>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo URL</span>
+                </label>
+                <input
+                  {...register("photoURL", { required: true })}
+                  type="photoURL"
+                  placeholder="Photo URL"
+                  className="input input-bordered"
+                />
+                {errors.photoURL && (
+                  <span className="text-red-500">
+                    Photo URL field is required
+                  </span>
                 )}
               </div>
               <div className="form-control">
